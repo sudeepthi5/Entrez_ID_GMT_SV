@@ -2,8 +2,8 @@ import gzip
 import csv
 import sys
 
-# This function is to read the homo_sapiens file and returns a dictionary with mapping of symbols to geneid. It also considered synonyms and added them to mapping. 
-# Creates a mapping of symbols to geneid.
+# This function is to read the homo_sapiens file and returns a dictionary with mapping of symbols to geneid. It also considers synonyms with multiple symbols 
+# and adds them to mapping. Creates a mapping of symbols to geneid and synonyms to symbols_geneid map.
 
 def read_gene_info(gene_info_file):
     symbol_to_geneid = {}
@@ -23,8 +23,8 @@ def read_gene_info(gene_info_file):
 
     return symbol_to_geneid
 
-# This function is to read the symbols file and replaces the symbols with Entrez_ID's using the symbol to gene_id mapping.
-# Creates a GMT output file with replaced Entrez_ID's. 
+# This function is to read the symbols file and replaces the symbols with Entrez_IDs using the symbol to gene_id mapping.
+# Creates a GMT output file with Entrez_IDs replacing gene_names. 
 
 def replace_gene_names_with_entrez_ids(gmt_file, symbol_to_geneid):
     output_file = "Entrez_ID.gmt"
@@ -45,7 +45,7 @@ def replace_gene_names_with_entrez_ids(gmt_file, symbol_to_geneid):
     print(f"Gene names in GMT file '{gmt_file}' have been replaced with Entrez IDs. Output saved in '{output_file}'.")
 
 # The main() function is used to phrase the command line arguments to get the input files. It then calls the read_gene_info() function to create the mapping and 
-# replace the gene_names with Entrez_ID's function to process the GMT file and save the updated Entrez_ID's GMT file.
+# replace the gene_names with Entrez_ID's() function to process the symbol GMT file and save the updated Entrez_ID's GMT file.
 
 
 def main():
